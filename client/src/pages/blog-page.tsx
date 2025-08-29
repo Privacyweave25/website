@@ -1,0 +1,127 @@
+import { useState } from "react";
+import { ExternalLink, Calendar, User, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLocation } from "wouter";
+
+const BlogPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [, navigate] = useLocation();
+
+    const handleBlogClick = () => {
+        setIsLoading(true);
+        navigate("/blog/beyond-encryption-privacyweave");
+        setIsLoading(false);
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+            {/* Hero Section */}
+            <div className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20">
+                <div className="container mx-auto px-4 text-center">
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+                        PrivacyWeave Blog
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto">
+                        Insights, updates, and thought leadership on AI privacy, data protection, and compliance automation
+                    </p>
+                </div>
+            </div>
+
+            {/* Blog Content */}
+            <div className="container mx-auto px-4 py-16">
+                <div className="max-w-4xl mx-auto">
+                    {/* Featured Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-blue-100 text-sm font-medium">FEATURED BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight">
+                                Beyond Encryption: Designing AI Systems that Never See Sensitive Data – The PrivacyWeave Solution
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Sadhanaa Rameshkumar</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">CTO at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 29 August 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Discover how PrivacyWeave's innovative approach goes beyond traditional encryption
+                                        to create AI systems that can process data without ever seeing sensitive information.
+                                        Learn about our groundbreaking privacy-preserving AI framework that maintains data
+                                        utility while ensuring complete privacy compliance.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoading}
+                                    >
+                                        {isLoading ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Coming Soon Section */}
+                    <div className="mt-16 text-center">
+                        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                                More Blogs Coming Soon
+                            </h2>
+                            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                                We're working on more insightful content about AI privacy, data protection strategies,
+                                compliance automation, and industry best practices. Stay tuned for regular updates!
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+                                    AI Privacy
+                                </div>
+                                <div className="bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium">
+                                    Data Protection
+                                </div>
+                                <div className="bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">
+                                    Compliance
+                                </div>
+                                <div className="bg-orange-50 text-orange-700 px-4 py-2 rounded-full text-sm font-medium">
+                                    Industry Insights
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default BlogPage;
