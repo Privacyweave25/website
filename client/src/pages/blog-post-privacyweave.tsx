@@ -122,7 +122,7 @@ const BlogPostPrivacyWeave = () => {
                     {/* End image */}
                     <figure className="mt-10">
                         <img src="/blog/privacyweave-blog-end-image.png" alt="PrivacyWeave Blog Illustration" className="rounded-lg shadow-md w-full" />
-                        <figcaption className="text-center text-sm text-[#2A5485] mt-2">Illustration</figcaption>
+
                     </figure>
                 </article>
             </div>
