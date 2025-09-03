@@ -15,12 +15,13 @@ import CookiePolicy from "@/pages/cookie-policy";
 import BlogPage from "@/pages/blog-page";
 import BlogPostPrivacyWeave from "@/pages/blog-post-privacyweave";
 import BlogPostDLPIAM from "@/pages/blog-post-dlp-iam";
+import BlogPostQuantumPrivacy from "@/pages/blog-post-quantum-privacy";
 import { AuthProvider } from "@/hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import { ChatInterface } from "./components/chat/chat-interface";
-import CornerLogo from "./components/corner-logo";
+// removed corner logo per request
 import { CookieBanner } from "./components/cookie-banner";
 import Feedback from "@/pages/Feedback"; // ✅ Import Feedback component
 
@@ -38,6 +39,7 @@ function Router() {
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/beyond-encryption-privacyweave" component={BlogPostPrivacyWeave} />
       <Route path="/blog/dlp-iam-security-blindspot" component={BlogPostDLPIAM} />
+      <Route path="/blog/quantum-enhanced-ai-privacy" component={BlogPostQuantumPrivacy} />
       <Route path="/cookie-policy" component={CookiePolicy} />
       <ProtectedRoute path="/admin" component={AdminDashboard} />
       <Route component={NotFound} />
@@ -51,7 +53,7 @@ function App() {
       <AuthProvider>
         <div className="flex flex-col min-h-screen">
           <Header />
-          <CornerLogo />
+          {null}
           <main className="flex-grow pt-20">
             <Router />
           </main>
