@@ -141,7 +141,7 @@ const BlogPostDataPrivacy2025 = () => {
                     {/* Data Privacy Flowchart Image */}
                     <figure className="mt-10">
                         <img
-                            src="/assets/images/rahulblog.png"
+                            src="/blog/rahulblog.png"
                             alt="Understanding Data Privacy: Why It Matters in 2025 - Flowchart showing the process from Data Created to Build Trust"
                             className="rounded-lg shadow-md w-3/4 mx-auto"
                         />
