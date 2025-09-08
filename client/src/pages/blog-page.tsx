@@ -11,11 +11,7 @@ const BlogPage = () => {
     const [isLoadingFourth, setIsLoadingFourth] = useState(false);
     const [, navigate] = useLocation();
 
-    const handleFirstBlogClick = () => {
-        setIsLoading(true);
-        navigate("/blog/beyond-encryption-privacyweave");
-        setIsLoading(false);
-    };
+
 
     const handleSecondBlogClick = () => {
         setIsLoadingSecond(true);
