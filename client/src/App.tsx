@@ -16,6 +16,7 @@ import BlogPage from "@/pages/blog-page";
 import BlogPostPrivacyWeave from "@/pages/blog-post-privacyweave";
 import BlogPostDLPIAM from "@/pages/blog-post-dlp-iam";
 import BlogPostQuantumPrivacy from "@/pages/blog-post-quantum-privacy";
+import BlogPostDataPrivacy2025 from "@/pages/blog-post-data-privacy-2025";
 import FeaturePage from "@/pages/feature-page";
 import AIScannerPage from "@/pages/products/ai-scanner";
 import ProtectionShieldPage from "@/pages/products/protection-shield";

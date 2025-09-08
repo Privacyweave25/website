@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Menu, ChevronDown, Shield, Database, ClipboardCheck, FileSpreadsheet, BarChart, Key, Lock, Building, Briefcase, GraduationCap, ShieldAlert, Brain } from "lucide-react";
+import { Menu, ChevronDown, Shield, Database, ClipboardCheck, FileSpreadsheet, BarChart, Key, Lock, Building, Briefcase, GraduationCap, ShieldAlert, Brain, Search, ShieldCheck, Network } from "lucide-react";
 import Logo from "@/components/logo";
 
 const Header = () => {
@@ -36,11 +36,11 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white z-50 backdrop-blur-sm bg-white/90 border-b border-primary/20 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-[#0a2c5a] text-white border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <Logo width={200} height={60} className="lg:w-[220px] lg:h-[65px] w-[200px] h-[55px]" />
+            <Logo width={200} height={60} className="lg:w-[220px] lg:h-[65px] w-[200px] h-[55px] brightness-0 invert" />
           </Link>
         </div>
 
@@ -50,103 +50,49 @@ const Header = () => {
           <div className="relative">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1 py-2 font-medium">
+                <Button variant="ghost" className="flex items-center gap-1 py-2 font-medium text-white hover:text-white/90">
                   Products
                   <ChevronDown size={16} />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-80 p-0 bg-white border border-primary/10 shadow-md rounded-md overflow-hidden">
-                <div className="bg-[#789DBC] px-4 py-3 border-b border-primary/10">
-                  <span className="text-sm font-semibold text-white uppercase tracking-wide">Privacy Platform</span>
+              <DropdownMenuContent align="start" className="w-80 p-0 bg-white border border-white/10 shadow-md rounded-md overflow-hidden">
+                <div className="bg-[#4B4376] px-4 py-3 border-b border-white/10">
+                  <span className="text-sm font-semibold text-white uppercase tracking-wide">AI Security Products</span>
                 </div>
 
                 <div className="grid p-2 gap-1">
                   <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
+                    <Link href="/products/ai-scanner" className="flex items-start gap-3 cursor-pointer">
                       <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Database size={18} />
+                        <Search size={18} />
                       </div>
                       <div>
-                        <div className="font-medium text-primary">Data Classification</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Secure sensitive data through smart discovery and classification</div>
+                        <div className="font-medium text-primary">AI Security Scanner →</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">Detect and block prompt injection, data exfiltration, and social engineering — all in real-time</div>
                       </div>
                     </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
+                    <Link href="/products/protection-shield" className="flex items-start gap-3 cursor-pointer">
                       <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <ClipboardCheck size={18} />
+                        <ShieldCheck size={18} />
                       </div>
                       <div>
-                        <div className="font-medium text-primary">Consent Management</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Smart, automated consent handling for seamless compliance</div>
+                        <div className="font-medium text-primary">Real-Time Protection Shield →</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">Your AI guard that never sleeps, never leaks</div>
                       </div>
                     </Link>
                   </DropdownMenuItem>
 
                   <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
+                    <Link href="/products/supply-chain" className="flex items-start gap-3 cursor-pointer">
                       <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <BarChart size={18} />
+                        <Network size={18} />
                       </div>
                       <div>
-                        <div className="font-medium text-primary">Data & AI Governance</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Unified governance across data landscapes and AI models</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <ShieldAlert size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Breach Management & Reporting</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Identify, mitigate and report threats with AI-driven tools</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-                </div>
-
-                <div className="bg-[#789DBC] px-4 py-3 border-b border-t border-primary/10">
-                  <span className="text-sm font-semibold text-white uppercase tracking-wide">Advanced Privacy Technologies</span>
-                </div>
-
-                <div className="grid p-2 gap-1">
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Key size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Adaptive Context Tokenization</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Context-aware sensitive data masking</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Lock size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Polymorphic Encryption</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Encrypted data verification without exposure</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Brain size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Federated Learning</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Decentralized model training without data</div>
+                        <div className="font-medium text-primary">AI TO AI Supply Chain</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">Know every API, plugin, and service touching your data</div>
                       </div>
                     </Link>
                   </DropdownMenuItem>
@@ -279,6 +225,8 @@ const Header = () => {
             </Button>
           </Link>
 
+
+
         </nav>
 
         <div className="hidden lg:flex items-center space-x-4">
@@ -361,77 +309,33 @@ const Header = () => {
                 </div>
 
                 <div className="p-3">
-                  <div className="px-1 py-1 text-sm font-medium text-primary">Privacy Platform</div>
-
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
+                  <Link href="/products/ai-scanner" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
                     <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <Database size={18} />
+                      <Search size={18} />
                     </div>
                     <div>
-                      <div className="font-medium text-primary">Data Classification</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Secure sensitive data through smart discovery</div>
+                      <div className="font-medium text-primary">AI Security Scanner →</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">Detect and block prompt injection, data exfiltration, and social engineering — all in real-time</div>
                     </div>
                   </Link>
 
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
+                  <Link href="/products/protection-shield" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
                     <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <ClipboardCheck size={18} />
+                      <ShieldCheck size={18} />
                     </div>
                     <div>
-                      <div className="font-medium text-primary">Consent Management</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Smart, automated consent handling</div>
+                      <div className="font-medium text-primary">Real-Time Protection Shield →</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">Your AI guard that never sleeps, never leaks</div>
                     </div>
                   </Link>
 
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
+                  <Link href="/products/supply-chain" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
                     <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <BarChart size={18} />
+                      <Network size={18} />
                     </div>
                     <div>
-                      <div className="font-medium text-primary">Data & AI Governance</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Unified governance across data landscapes</div>
-                    </div>
-                  </Link>
-
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
-                    <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <ShieldAlert size={18} />
-                    </div>
-                    <div>
-                      <div className="font-medium text-primary">Breach Management</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Identify, mitigate and report threats</div>
-                    </div>
-                  </Link>
-
-                  <div className="px-1 py-1 mt-3 text-sm font-medium text-primary">Advanced Privacy Technologies</div>
-
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
-                    <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <Key size={18} />
-                    </div>
-                    <div>
-                      <div className="font-medium text-primary">Adaptive context Tokenization</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Context-aware sensitive data masking</div>
-                    </div>
-                  </Link>
-
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
-                    <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <Lock size={18} />
-                    </div>
-                    <div>
-                      <div className="font-medium text-primary">Polymorphic Encryption</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Encrypted data verification without exposure</div>
-                    </div>
-                  </Link>
-
-                  <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-[#FEF9F2] mt-1">
-                    <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                      <Brain size={18} />
-                    </div>
-                    <div>
-                      <div className="font-medium text-primary">Federated Learning</div>
-                      <div className="text-xs text-muted-foreground mt-0.5">Decentralized model training without data</div>
+                      <div className="font-medium text-primary">AI TO AI Supply Chain</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">Know every API, plugin, and service touching your data</div>
                     </div>
                   </Link>
                 </div>

@@ -6,11 +6,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Label } from "@/components/ui/label";
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetHeader, 
-  SheetTitle, 
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
   SheetDescription,
   SheetFooter,
@@ -60,7 +60,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
   const createConversationMutation = useMutation({
     mutationFn: async () => {
       if (!sessionId) return null;
-      
+
       const response = await apiRequest('/api/chat/conversations', {
         method: 'POST',
         body: JSON.stringify({
@@ -73,7 +73,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
           'Content-Type': 'application/json'
         }
       });
-      
+
       return await response.json();
     },
     onSuccess: (data) => {
@@ -107,12 +107,12 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
   const sendMessageMutation = useMutation({
     mutationFn: async () => {
       if (!conversationId || !message.trim()) return null;
-      
+
       const formData = new FormData();
       formData.append('sender', 'user');
       formData.append('content', message);
       formData.append('isApplicationRequest', 'false');
-      
+
       // Add metadata if user provided name/email
       if (userInfo.name || userInfo.email) {
         const metadata = {
@@ -121,17 +121,17 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
         };
         formData.append('metadata', JSON.stringify(metadata));
       }
-      
+
       // Add attachment if present
       if (attachment) {
         formData.append('attachment', attachment);
       }
-      
+
       const response = await apiRequest(`/api/chat/conversations/${conversationId}/messages`, {
         method: 'POST',
         body: formData
       });
-      
+
       // Server returns both the user message and bot response in one object
       // We'll return this combined response to be handled in onSuccess
       return await response.json();
@@ -142,7 +142,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
-      
+
       // Invalidate query to refresh messages
       queryClient.invalidateQueries({
         queryKey: ['/api/chat/conversations', conversationId, 'messages']
@@ -201,7 +201,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
         });
         return;
       }
-      
+
       // Check file type (PDF or Word docs only)
       const fileExt = file.name.split('.').pop()?.toLowerCase();
       if (fileExt !== 'pdf' && fileExt !== 'doc' && fileExt !== 'docx') {
@@ -212,7 +212,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
         });
         return;
       }
-      
+
       setAttachment(file);
     }
   };
@@ -222,40 +222,40 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
     const date = new Date(timestamp);
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
-  
+
   // Check if a message contains explicit job application intent
   const isJobRelatedMessage = (content: string) => {
     const lowerContent = content.toLowerCase();
     // Only match explicit application intent phrases
-    return (lowerContent.includes('apply for') && 
-              (lowerContent.includes('job') || 
-               lowerContent.includes('position') || 
-               lowerContent.includes('role'))) || 
-           (lowerContent.includes('how') && 
-              lowerContent.includes('apply') && 
-              (lowerContent.includes('job') || 
-               lowerContent.includes('position') || 
-               lowerContent.includes('role'))) ||
-           (lowerContent.includes('interested in') && 
-              lowerContent.includes('position')) ||
-           (lowerContent.includes('job application') && 
-              lowerContent.includes('form')) ||
-           (lowerContent.includes('submit') && 
-              lowerContent.includes('resume'));
+    return (lowerContent.includes('apply for') &&
+      (lowerContent.includes('job') ||
+        lowerContent.includes('position') ||
+        lowerContent.includes('role'))) ||
+      (lowerContent.includes('how') &&
+        lowerContent.includes('apply') &&
+        (lowerContent.includes('job') ||
+          lowerContent.includes('position') ||
+          lowerContent.includes('role'))) ||
+      (lowerContent.includes('interested in') &&
+        lowerContent.includes('position')) ||
+      (lowerContent.includes('job application') &&
+        lowerContent.includes('form')) ||
+      (lowerContent.includes('submit') &&
+        lowerContent.includes('resume'));
   };
-  
+
   // Handle job application submission
   const handleApplicationSubmit = async (formData: ApplicationFormData) => {
     if (!conversationId) return;
-    
+
     // Create FormData instance for the API call
     const apiFormData = new FormData();
-    
+
     // Set application flag and add all form fields as metadata
     apiFormData.append('sender', 'user');
     apiFormData.append('content', `I'm applying for the "${formData.position}" position.\n\n${formData.message || 'Please consider my application.'}`);
     apiFormData.append('isApplicationRequest', 'true');
-    
+
     const metadata = {
       fullName: formData.fullName,
       email: formData.email,
@@ -264,25 +264,25 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
       experience: formData.experience,
       isJobApplication: true
     };
-    
+
     apiFormData.append('metadata', JSON.stringify(metadata));
-    
+
     // Add resume if provided
     if (formData.resumeFile) {
       apiFormData.append('attachment', formData.resumeFile);
     }
-    
+
     try {
       // Submit the application message
       const response = await apiRequest(`/api/chat/conversations/${conversationId}/messages`, {
         method: 'POST',
         body: apiFormData
       });
-      
+
       // Server returns both the user message and bot response in one object
       const data = await response.json();
       console.log('Job application submission response:', data);
-      
+
       // Update userInfo if it wasn't set before
       if (!userInfo.name || !userInfo.email) {
         setUserInfo({
@@ -290,18 +290,18 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
           email: formData.email
         });
       }
-      
+
       // Invalidate query to refresh messages
       queryClient.invalidateQueries({
         queryKey: ['/api/chat/conversations', conversationId, 'messages']
       });
-      
+
       toast({
         title: 'Application Submitted',
         description: 'Your job application has been submitted successfully. We will contact you soon.',
         variant: 'default'
       });
-      
+
     } catch (error) {
       console.error('Application submission error:', error);
       toast({
@@ -315,33 +315,33 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
   return (
     <>
       {/* Job Application Dialog */}
-      <ChatJobApplication 
+      <ChatJobApplication
         conversationId={conversationId || 0}
         onApplicationSubmit={handleApplicationSubmit}
         isOpen={isApplicationDialogOpen}
         onOpenChange={setIsApplicationDialogOpen}
       />
-      
+
       {/* Chat Trigger Button */}
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button 
-            className="fixed bottom-4 right-4 rounded-full h-14 w-14 p-0 shadow-lg"
+          <Button
+            className="fixed bottom-4 right-4 rounded-full h-14 w-14 p-0 shadow-lg bg-[#154D71] hover:bg-[#154D71]/90"
             size="icon"
           >
             <MessageCircle size={24} />
           </Button>
         </SheetTrigger>
-        
-        <SheetContent className="sm:max-w-md p-0 border-l border-l-primary/20 h-full flex flex-col">
-          <SheetHeader className="p-4 border-b">
+
+        <SheetContent className="sm:max-w-md p-0 border-l h-full flex flex-col" style={{ borderColor: '#154D71' }}>
+          <SheetHeader className="p-4 border-b" style={{ borderColor: '#154D71' }}>
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-3">
                 <Avatar className="h-10 w-10">
                   <AvatarImage src="/images/privacy-weave-logo.png" alt="PrivacyWeave" className="mix-blend-multiply" />
                   <AvatarFallback>PW</AvatarFallback>
                 </Avatar>
-                <SheetTitle className="text-lg">PrivacyWeave Support</SheetTitle>
+                <SheetTitle className="text-lg" style={{ color: '#154D71' }}>PrivacyWeave Support</SheetTitle>
               </div>
               <SheetClose className="rounded-full p-0">
                 <X className="h-4 w-4" />
@@ -351,7 +351,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
               Ask us anything about our services or leave a message.
             </SheetDescription>
           </SheetHeader>
-          
+
           {/* Chat Messages */}
           <ScrollArea className="flex-1 p-4">
             {messages.length === 0 ? (
@@ -366,22 +366,20 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
-                    className={`flex ${
-                      msg.sender === 'user' ? 'justify-end' : 'justify-start'
-                    }`}
+                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'
+                      }`}
                   >
                     <div
-                      className={`max-w-[80%] rounded-lg p-3 ${
-                        msg.sender === 'user'
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted'
-                      }`}
+                      className={`max-w-[80%] rounded-lg p-3 ${msg.sender === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-muted'
+                        }`}
                     >
                       <div className="text-sm whitespace-pre-wrap">{msg.content}</div>
                       <div className="text-xs mt-1 opacity-70 text-right">
                         {formatTimestamp(msg.timestamp)}
                       </div>
-                      
+
                       {/* Show attachment if present */}
                       {msg.attachmentUrl && (
                         <div className="mt-2 p-2 bg-background/20 rounded flex items-center gap-2">
@@ -389,12 +387,12 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                           <span className="text-xs truncate">Attachment</span>
                         </div>
                       )}
-                      
+
                       {/* Apply button for bot messages that are job-related */}
                       {(msg.sender === 'bot' && isJobRelatedMessage(msg.content)) && (
                         <div className="mt-3">
-                          <Button 
-                            variant="outline" 
+                          <Button
+                            variant="outline"
                             size="sm"
                             className="w-full text-xs"
                             onClick={() => setIsApplicationDialogOpen(true)}
@@ -411,7 +409,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
               </div>
             )}
           </ScrollArea>
-          
+
           {/* User Info Form - shown only first time */}
           {messages.length === 0 && (
             <div className="p-4 border-t">
@@ -422,7 +420,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                     id="name"
                     placeholder="Enter your name"
                     value={userInfo.name}
-                    onChange={(e) => setUserInfo({...userInfo, name: e.target.value})}
+                    onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
                   />
                 </div>
                 <div className="grid gap-2">
@@ -432,13 +430,13 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                     type="email"
                     placeholder="Enter your email"
                     value={userInfo.email}
-                    onChange={(e) => setUserInfo({...userInfo, email: e.target.value})}
+                    onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
                   />
                 </div>
               </div>
             </div>
           )}
-          
+
           {/* Message Input Area */}
           <div className="p-4 border-t mt-auto">
             {attachment && (
@@ -447,8 +445,8 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                   <Paperclip className="h-4 w-4 flex-shrink-0" />
                   <span className="text-sm truncate">{attachment.name}</span>
                 </div>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   size="icon"
                   className="h-6 w-6 rounded-full"
                   onClick={handleRemoveAttachment}
@@ -457,7 +455,7 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                 </Button>
               </div>
             )}
-            
+
             <form onSubmit={handleSendMessage} className="flex gap-2">
               <input
                 type="file"
@@ -487,9 +485,9 @@ export function ChatInterface({ minimized = false, onMinimize }: ChatInterfacePr
                   }
                 }}
               />
-              <Button 
-                type="submit" 
-                size="icon" 
+              <Button
+                type="submit"
+                size="icon"
                 disabled={(!message.trim() && !attachment) || sendMessageMutation.isPending}
                 className="flex-shrink-0"
               >

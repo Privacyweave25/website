@@ -138,7 +138,10 @@ const BlogPostDataPrivacy2025 = () => {
                         As technology grows smarter, so should our strategies to keep our data safe and private.
                     </p>
 
-                
+                    {/* Data Privacy Flowchart Image */}
+                    <figure className="mt-10">
+                        <img
+                            src="/blog/rahulblog.png"
                             alt="Understanding Data Privacy: Why It Matters in 2025 - Flowchart showing the process from Data Created to Build Trust"
                             className="rounded-lg shadow-md w-3/4 mx-auto"
                         />
