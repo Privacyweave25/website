@@ -92,6 +92,7 @@ const SupplyChainPage = () => {
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
           }
           
           .feature-card:hover {
@@ -163,6 +164,7 @@ const SupplyChainPage = () => {
             padding: 3rem;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
           }
           
           .alert-item {
@@ -181,7 +183,9 @@ const SupplyChainPage = () => {
         `
       }} />
 
-      <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="min-h-screen text-white relative">
+        {/* Fixed gradient background */}
+        <div className="fixed inset-0 bg-gradient-to-b from-black to-[#070752] -z-10"></div>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center relative px-4 py-20">
           <div className="hero-bg"></div>
@@ -207,11 +211,11 @@ const SupplyChainPage = () => {
       .ai-sec-header h1 {
         font-size: 2.5rem;
         font-weight: 700;
-        color: #154D71;
+        color: #ffffff;
         margin-bottom: 10px;
       }
       .ai-sec-header p {
-        color: #555;
+        color: #ffffff;
         font-size: 1.1rem;
         margin: 5px 0;
       }
@@ -226,45 +230,47 @@ const SupplyChainPage = () => {
       .workflow-box {
         flex: 1 1 280px;
         max-width: 320px;
-        background: #fff;
-        border: 1px solid #e5e7eb;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
         padding: 25px;
         text-align: center;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
       }
       .workflow-box h3 {
         font-size: 1.25rem;
         font-weight: 600;
         margin-bottom: 10px;
+        color: white;
       }
       .workflow-box p {
         font-size: 0.95rem;
-        color: #444;
+        color: #ccc;
       }
       .workflow-box small {
         display: block;
         margin-top: 8px;
         font-size: 0.8rem;
-        color: #777;
+        color: #aaa;
       }
       .workflow-box:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
       }
       .arrow {
         font-size: 2rem;
-        color: #154D71;
+        color: #60a5fa;
         text-align: center;
         margin: 15px 0;
       }
       /* Professional Colors */
-      .box-discovery { border-top: 4px solid #2563eb; }
-      .box-access { border-top: 4px solid #0d9488; }
-      .box-monitor { border-top: 4px solid #4f46e5; }
-      .box-prevent { border-top: 4px solid #059669; }
-      .box-compliance { border-top: 4px solid #d97706; }
+      .box-discovery { border-top: 4px solid #60a5fa; }
+      .box-access { border-top: 4px solid #34d399; }
+      .box-monitor { border-top: 4px solid #a78bfa; }
+      .box-prevent { border-top: 4px solid #4ade80; }
+      .box-compliance { border-top: 4px solid #fbbf24; }
     `,
                 }}
               />
@@ -272,15 +278,15 @@ const SupplyChainPage = () => {
               {/* --- New Section --- */}
               <div className="ai-sec-container">
                 <div className="ai-sec-header">
-                  <h1>AI-to-AI Supply Chain Security</h1>
-                  <p>Know every API, plugin, and service touching your data</p>
-                  <p>Comprehensive role-based data leak prevention for organizational AI systems</p>
+                  <h1 className="text-white">AI-to-AI Supply Chain Security</h1>
+                  <p className="text-white">Know every API, plugin, and service touching your data</p>
+                  <p className="text-white">Comprehensive role-based data leak prevention for organizational AI systems</p>
                 </div>
 
                 {/* Row 1 */}
                 <div className="workflow-row">
                   <div className="workflow-box box-discovery">
-                    <h3>🔍 Data Discovery & Mapping</h3>
+                    <h3> Data Discovery & Mapping</h3>
                     <p>Comprehensive AI Service Inventory</p>
                     <small>API Discovery • Plugin Detection • Service Mapping • Data Flow Analysis</small>
                   </div>
@@ -291,11 +297,11 @@ const SupplyChainPage = () => {
                 {/* Row 2 */}
                 <div className="workflow-row">
                   <div className="workflow-box box-access">
-                    <h3>👥 Role-Based Access Analysis</h3>
+                    <h3> Role-Based Access Analysis</h3>
                     <p>User Privilege & Permission Mapping</p>
                   </div>
                   <div className="workflow-box box-monitor">
-                    <h3>🤖 AI Service Monitoring</h3>
+                    <h3> AI Service Monitoring</h3>
                     <p>Real-time AI Interaction Tracking</p>
                   </div>
                 </div>
@@ -305,11 +311,11 @@ const SupplyChainPage = () => {
                 {/* Row 3 */}
                 <div className="workflow-row">
                   <div className="workflow-box box-prevent">
-                    <h3>🛡️ Data Leak Prevention</h3>
+                    <h3> Data Leak Prevention</h3>
                     <p>Intelligent Content Filtering</p>
                   </div>
                   <div className="workflow-box box-compliance">
-                    <h3>📋 Compliance & Reporting</h3>
+                    <h3> Compliance & Reporting</h3>
                     <p>Audit Trails & Governance</p>
                   </div>
                 </div>
@@ -323,7 +329,7 @@ const SupplyChainPage = () => {
 
         {/* Data's Secret Journey */}
         <div className="max-w-6xl mx-auto px-4 py-16">
-          <h2 className="text-4xl font-bold text-center mb-4">Your Data's Secret Journey</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 text-white">Your Data's Secret Journey</h2>
           <p className="text-center text-gray-400 mb-12">Every API, plugin, and service touching your sensitive information</p>
 
           <div className="demo-container">

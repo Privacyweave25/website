@@ -36,7 +36,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-[#0a2c5a] text-white border-b border-white/10 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-slate-900/95 text-white border-b border-white/10 shadow-sm">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
@@ -101,102 +101,9 @@ const Header = () => {
             </DropdownMenu>
           </div>
 
-          {/* Solutions Dropdown */}
-          <div className="relative">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1 py-2 font-medium">
-                  Solutions
-                  <ChevronDown size={16} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-80 p-0 bg-white border border-primary/10 shadow-md rounded-md overflow-hidden">
-                <div className="bg-[#789DBC] px-4 py-3 border-b border-primary/10">
-                  <span className="text-sm font-semibold text-white uppercase tracking-wide">By Industry</span>
-                </div>
-
-                <div className="grid p-2 gap-1">
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Building size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Healthcare</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">HIPAA-compliant privacy solutions for patient data</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Building size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Financial Services</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">PCI-DSS compliant solutions for financial institutions</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Building size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Retail & eCommerce</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Protect customer data while enabling personalization</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Building size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Automobile</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Safeguard connected vehicle and customer information</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-                </div>
-
-                <div className="bg-[#789DBC] px-4 py-3 border-b border-t border-primary/10">
-                  <span className="text-sm font-semibold text-white uppercase tracking-wide">By Use Case</span>
-                </div>
-
-                <div className="grid p-2 gap-1">
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <Briefcase size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Regulatory Compliance</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Comprehensive solutions for GDPR, DPDP Act 2023, HIPAA, and other regulations</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-[#FEF9F2]">
-                    <Link href="#" className="flex items-start gap-3 cursor-pointer">
-                      <div className="mt-0.5 bg-primary/10 p-1.5 rounded-md text-primary">
-                        <GraduationCap size={18} />
-                      </div>
-                      <div>
-                        <div className="font-medium text-primary">Cross-Border Data Flows</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">Seamlessly transfer data across borders while maintaining compliance</div>
-                      </div>
-                    </Link>
-                  </DropdownMenuItem>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+          <Link href="/use-cases">
+            <Button variant="ghost" className="font-medium">Use Cases</Button>
+          </Link>
 
           <Link href="/about">
             <Button
@@ -216,12 +123,12 @@ const Header = () => {
             </Button>
           </Link>
 
-          <Link href="/feedback">
+          <Link href="/contact">
             <Button
               variant="ghost"
-              className={`font-medium ${isActive("/feedback") ? "text-primary" : ""}`}
+              className={`font-medium text-white hover:text-white/90 ${isActive("/contact") ? "text-white" : ""}`}
             >
-              Feedback
+              Contact Us
             </Button>
           </Link>
 
@@ -233,9 +140,9 @@ const Header = () => {
           <Link href="/contact">
             <Button
               variant="outline"
-              className="border-primary border-2 text-primary hover:bg-primary/10 hover:text-primary rounded-md font-medium transition-all"
+              className="border-white border-2 text-white hover:bg-white hover:text-slate-900 rounded-full font-medium transition-all px-6 py-2"
             >
-              Request Demo
+              Try for Free
             </Button>
           </Link>
 
@@ -421,9 +328,9 @@ const Header = () => {
                 <Link href="/contact" onClick={() => setMenuOpen(false)}>
                   <Button
                     variant="outline"
-                    className="w-full border-primary border-2 text-primary hover:bg-primary/10 hover:text-primary rounded-md font-medium transition-all"
+                    className="w-full border-white border-2 text-white hover:bg-white hover:text-slate-900 rounded-full font-medium transition-all"
                   >
-                    Request Demo
+                    Try for Free
                   </Button>
                 </Link>
 

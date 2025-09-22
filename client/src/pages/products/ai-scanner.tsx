@@ -151,6 +151,7 @@ const AIScannerPage = () => {
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
           }
           
           .feature-card:hover {
@@ -167,6 +168,7 @@ const AIScannerPage = () => {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
+            color: #ffffff;
           }
           
           .feature-description {
@@ -199,6 +201,7 @@ const AIScannerPage = () => {
             background: rgba(255, 255, 255, 0.02);
             border-radius: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
           }
           
           .stat-number {
@@ -221,6 +224,7 @@ const AIScannerPage = () => {
             border-radius: 1rem;
             padding: 2rem;
             position: relative;
+            box-shadow: 0 0 30px rgba(255, 95, 87, 0.3), 0 0 60px rgba(255, 95, 87, 0.2);
           }
           
           .alert-box::before {
@@ -247,9 +251,11 @@ const AIScannerPage = () => {
         `
       }} />
 
-      <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="min-h-screen text-white relative">
+        {/* Fixed gradient background */}
+        <div className="fixed inset-0 bg-gradient-to-b from-black to-[#070752] -z-10"></div>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center relative px-4 py-20">
+        <section className="h-screen flex items-center justify-center relative px-4 py-20">
           <div className="hero-bg"></div>
           <div className="max-w-4xl text-center relative z-10">
 
@@ -261,95 +267,34 @@ const AIScannerPage = () => {
           </div>
         </section>
 
-        {/* See The Difference - moved from Home with animations */}
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              @keyframes flicker-alert { 0%,20%{opacity:0;transform:scale(0.8);} 25%,45%{opacity:1;transform:scale(1.1);} 50%,100%{opacity:0;transform:scale(0.8);} }
-              .animate-flicker-1 { animation: flicker-alert 3s ease-in-out infinite; animation-delay: 0s; }
-              .animate-flicker-2 { animation: flicker-alert 3s ease-in-out infinite; animation-delay: 1s; }
-              .animate-flicker-3 { animation: flicker-alert 3s ease-in-out infinite; animation-delay: 2s; }
-            `
-          }} />
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-white">See The Difference</h2>
-          <p className="text-center text-gray-400 mb-10">Real-time protection that transforms chaos into control</p>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Without Privacy Weave */}
-            <div className="relative p-8 rounded-2xl bg-gradient-to-br from-red-900/20 to-red-800/10 border-2 border-red-800/40 hover:scale-[1.02] transition-transform duration-300">
-              <div className="absolute top-4 left-4 text-red-300 font-semibold text-sm uppercase tracking-wider">
-                Without Privacy Weave
-              </div>
-
-              <div className="mt-12 mb-8 h-40 md:h-48 flex items-center justify-center relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="absolute top-4 left-4 bg-red-900/40 border border-red-500/60 px-3 py-2 rounded-lg text-red-200 text-xs font-semibold animate-flicker-1">
-                    DATA LEAK!
-                  </div>
-                  <div className="absolute top-16 right-8 bg-red-900/40 border border-red-500/60 px-3 py-2 rounded-lg text-red-200 text-xs font-semibold animate-flicker-2">
-                    BREACH ALERT!
-                  </div>
-                  <div className="absolute bottom-6 left-12 bg-red-900/40 border border-red-500/60 px-3 py-2 rounded-lg text-red-200 text-xs font-semibold animate-flicker-3">
-                    COMPLIANCE FAIL!
-                  </div>
-                </div>
-              </div>
-
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-center gap-3"><span className="text-red-400 font-bold text-lg">✗</span><span>AI exposes sensitive customer data</span></li>
-                <li className="flex items-center gap-3"><span className="text-red-400 font-bold text-lg">✗</span><span>Jailbreak attacks succeed easily</span></li>
-                <li className="flex items-center gap-3"><span className="text-red-400 font-bold text-lg">✗</span><span>No visibility into data flows</span></li>
-                <li className="flex items-center gap-3"><span className="text-red-400 font-bold text-lg">✗</span><span>Compliance violations and fines</span></li>
-                <li className="flex items-center gap-3"><span className="text-red-400 font-bold text-lg">✗</span><span>Lost customer trust</span></li>
-              </ul>
-            </div>
-
-            {/* With Privacy Weave */}
-            <div className="relative p-8 rounded-2xl bg-gradient-to-br from-green-900/20 to-green-800/10 border-2 border-green-800/40 hover:scale-[1.02] transition-transform duration-300">
-              <div className="absolute top-4 left-4 text-green-300 font-semibold text-sm uppercase tracking-wider">
-                With Privacy Weave
-              </div>
-
-              <div className="mt-12 mb-8 h-40 md:h-48 flex items-center justify-center">
-                <div className="w-24 h-24 border-4 border-green-500 rounded-full flex items-center justify-center bg-green-900/20 animate-pulse">
-                  <span className="text-green-400 text-4xl font-bold">✓</span>
-                </div>
-              </div>
-
-              <ul className="space-y-3 text-gray-300">
-                <li className="flex items-center gap-3"><span className="text-green-400 font-bold text-lg">✓</span><span>All sensitive data automatically protected</span></li>
-                <li className="flex items-center gap-3"><span className="text-green-400 font-bold text-lg">✓</span><span>Attacks blocked in milliseconds</span></li>
-                <li className="flex items-center gap-3"><span className="text-green-400 font-bold text-lg">✓</span><span>Complete visibility and control</span></li>
-                <li className="flex items-center gap-3"><span className="text-green-400 font-bold text-lg">✓</span><span>Automatic compliance reporting</span></li>
-                <li className="flex items-center gap-3"><span className="text-green-400 font-bold text-lg">✓</span><span>Customer confidence secured</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
 
 
         {/* Live Attack Visualization (replacing simulation with rich visualization) */}
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-4 py-8">
           <style dangerouslySetInnerHTML={{
             __html: `
-            .viz-container{backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:20px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+            .viz-container{backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:20px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));box-shadow:0 0 30px rgba(255,255,255,.1)}
             .workflow{display:flex;flex-direction:column;gap:24px}
             .row{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
-            .box{min-width:260px;text-align:center;border-radius:14px;padding:18px;border:2px solid transparent;position:relative;overflow:hidden;cursor:pointer}
+            .box{min-width:260px;text-align:center;border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,0.1);position:relative;overflow:hidden;cursor:pointer;box-shadow:0 0 20px rgba(255,255,255,.08);background:rgba(255,255,255,0.03)}
+            .box h3{color:#fff;font-weight:600;margin-bottom:8px}
+            .box p{font-size:.95rem;color:#cbd5e1}
+            .box:after{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent, #60a5fa);border-top-left-radius:16px;border-top-right-radius:16px}
             .box:before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s ease}
             .box:hover:before{left:100%}
-            .box:hover{transform:translateY(-4px);border-color:#00f5ff;box-shadow:0 10px 30px rgba(0,245,255,.2)}
-            .g-input{background:linear-gradient(135deg,#ff006e,#8338ec)}
-            .g-proc{background:linear-gradient(135deg,#3a86ff,#06ffa5)}
-            .g-anal{background:linear-gradient(135deg,#ffbe0b,#fb8500)}
-            .g-out{background:linear-gradient(135deg,#06ffa5,#3a86ff)}
+            .box:hover{transform:translateY(-4px);box-shadow:0 0 28px rgba(255,255,255,.18)}
+            .g-input{--accent: linear-gradient(90deg,#60a5fa,#a78bfa)}
+            .g-proc{--accent: linear-gradient(90deg,#34d399,#10b981)}
+            .g-anal{--accent: linear-gradient(90deg,#fbbf24,#fb923c)}
+            .g-out{--accent: linear-gradient(90deg,#10b981,#60a5fa)}
             .tag{display:inline-block;background:rgba(255,0,110,.3);border:1px solid #ff006e;padding:6px 14px;border-radius:20px;font-size:.9em;margin-right:8px;margin-bottom:8px}
             .progress{width:100%;height:18px;background:rgba(255,255,255,.15);border-radius:10px;overflow:hidden}
             .fill{height:100%;background:linear-gradient(90deg,#00f5ff,#ff006e);animation:loading 3s ease-in-out infinite}
             @keyframes loading{0%,100%{width:0%}50%{width:100%}}
             .blink{animation:blink 1s infinite}
             @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:.3}}
+            .arrow{font-size:2rem;color:#60a5fa;text-align:center;margin:10px 0}
           `}} />
 
           <div className="viz-container">
@@ -360,21 +305,25 @@ const AIScannerPage = () => {
 
             <div className="workflow">
               <div className="row">
-                <div className="box g-input"><h3 className="font-semibold">🎯 Input Sources</h3><p>Endpoint URLs & Chatbots</p><div className="mt-2 text-sm opacity-80">REST APIs • GraphQL • AI Chatbots • Web Apps</div></div>
+                <div className="box g-input"><h3 className="font-semibold"> Input Sources</h3><p>Endpoint URLs & Chatbots</p><div className="mt-2 text-sm opacity-80">REST APIs • GraphQL • AI Chatbots • Web Apps</div></div>
               </div>
+              <div className="arrow">↓</div>
               <div className="row">
-                <div className="box g-proc"><h3 className="font-semibold">⚙️ Pre-Processing</h3><p>Validation & Configuration</p><div className="mt-2 text-sm opacity-80">Target Classification • Auth Setup • Rate Limiting</div></div>
+                <div className="box g-proc"><h3 className="font-semibold"> Pre-Processing</h3><p>Validation & Configuration</p><div className="mt-2 text-sm opacity-80">Target Classification • Auth Setup • Rate Limiting</div></div>
               </div>
+              <div className="arrow">↓</div>
               <div className="row">
-                <div className="box g-anal"><h3 className="font-semibold">🔍 Endpoint Scanner</h3><p>Data Discovery & Vulnerability Assessment</p><div className="mt-2 text-sm opacity-80">PII/PHI Detection • SQL Injection • Data Leaks</div></div>
-                <div className="box g-anal"><h3 className="font-semibold">🤖 Chatbot Scanner</h3><p>Prompt Injection & Jailbreaking</p><div className="mt-2 text-sm opacity-80">System Override • Role Confusion • Data Extraction</div></div>
+                <div className="box g-anal"><h3 className="font-semibold"> Endpoint Scanner</h3><p>Data Discovery & Vulnerability Assessment</p><div className="mt-2 text-sm opacity-80">PII/PHI Detection • SQL Injection • Data Leaks</div></div>
+                <div className="box g-anal"><h3 className="font-semibold"> Chatbot Scanner</h3><p>Prompt Injection & Jailbreaking</p><div className="mt-2 text-sm opacity-80">System Override • Role Confusion • Data Extraction</div></div>
               </div>
+              <div className="arrow">↓</div>
               <div className="row">
-                <div className="box g-proc"><h3 className="font-semibold">🧠 Analysis Engine</h3><p>ML Models & Rule-Based Detection</p><div className="mt-2 text-sm opacity-80">Classification • Risk Scoring • Pattern Matching</div></div>
+                <div className="box g-proc"><h3 className="font-semibold"> Analysis Engine</h3><p>ML Models & Rule-Based Detection</p><div className="mt-2 text-sm opacity-80">Classification • Risk Scoring • Pattern Matching</div></div>
               </div>
+              <div className="arrow">↓</div>
               <div className="row">
-                <div className="box g-out"><h3 className="font-semibold">📊 Reporting</h3><p>Dashboard & Alerts</p><div className="mt-2 text-sm opacity-80">Live Monitoring • Detailed Reports • Compliance Status</div></div>
-                <div className="box g-out"><h3 className="font-semibold">🚨 Alerting</h3><p>Real-time Notifications</p><div className="mt-2 text-sm opacity-80">Email • Slack • SMS • SIEM Integration</div></div>
+                <div className="box g-out"><h3 className="font-semibold"> Reporting</h3><p>Dashboard & Alerts</p><div className="mt-2 text-sm opacity-80">Live Monitoring • Detailed Reports • Compliance Status</div></div>
+                <div className="box g-out"><h3 className="font-semibold"> Alerting</h3><p>Real-time Notifications</p><div className="mt-2 text-sm opacity-80">Email • Slack • SMS • SIEM Integration</div></div>
               </div>
             </div>
 

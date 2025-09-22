@@ -9,9 +9,19 @@ const BlogPage = () => {
     const [isLoadingSecond, setIsLoadingSecond] = useState(false);
     const [isLoadingThird, setIsLoadingThird] = useState(false);
     const [isLoadingFourth, setIsLoadingFourth] = useState(false);
+    const [isLoadingConsent, setIsLoadingConsent] = useState(false);
+    const [isLoadingResponsible, setIsLoadingResponsible] = useState(false);
+    const [isLoadingZeroTrust, setIsLoadingZeroTrust] = useState(false);
+    const [isLoadingMasking, setIsLoadingMasking] = useState(false);
+    const [isLoadingCompliance, setIsLoadingCompliance] = useState(false);
+    const [isLoadingPrivacyByDesign, setIsLoadingPrivacyByDesign] = useState(false);
     const [, navigate] = useLocation();
 
-
+    const handleFirstBlogClick = () => {
+        setIsLoading(true);
+        navigate("/blog/beyond-encryption-privacyweave");
+        setIsLoading(false);
+    };
 
     const handleSecondBlogClick = () => {
         setIsLoadingSecond(true);
@@ -29,6 +39,42 @@ const BlogPage = () => {
         setIsLoadingFourth(true);
         navigate("/blog/understanding-data-privacy-2025");
         setIsLoadingFourth(false);
+    };
+
+    const handleConsentBlogClick = () => {
+        setIsLoadingConsent(true);
+        navigate("/blog/ai-consent-automation");
+        setIsLoadingConsent(false);
+    };
+
+    const handleResponsibleBlogClick = () => {
+        setIsLoadingResponsible(true);
+        navigate("/blog/responsible-ai-privacy");
+        setIsLoadingResponsible(false);
+    };
+
+    const handleZeroTrustBlogClick = () => {
+        setIsLoadingZeroTrust(true);
+        navigate("/blog/zero-trust-encryption");
+        setIsLoadingZeroTrust(false);
+    };
+
+    const handleMaskingBlogClick = () => {
+        setIsLoadingMasking(true);
+        navigate("/blog/real-time-data-masking");
+        setIsLoadingMasking(false);
+    };
+
+    const handleComplianceBlogClick = () => {
+        setIsLoadingCompliance(true);
+        navigate("/blog/compliance-by-design");
+        setIsLoadingCompliance(false);
+    };
+
+    const handlePrivacyByDesignBlogClick = () => {
+        setIsLoadingPrivacyByDesign(true);
+        navigate("/blog/privacy-by-design");
+        setIsLoadingPrivacyByDesign(false);
     };
 
     return (
@@ -269,6 +315,354 @@ const BlogPage = () => {
                                         disabled={isLoadingFourth}
                                     >
                                         {isLoadingFourth ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Fifth Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleConsentBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                AI in Privacy: Automating Consent Management in an Age of Regulation
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Simran Gupta</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">Legal Consultant at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 8 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        How AI automates consent collection, tracking, and withdrawals across regions to meet GDPR, DPDP, and CCPA.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingConsent}
+                                    >
+                                        {isLoadingConsent ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Sixth Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleResponsibleBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                Balancing AI and Privacy: A Simple Guide to Responsible Data Use
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Simran Gupta</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">Legal Consultant at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 8 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Practical ways to reduce bias, apply differential privacy, and personalize ethically.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingResponsible}
+                                    >
+                                        {isLoadingResponsible ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Seventh Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleZeroTrustBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                Zero-Trust Encryption: Why It Matters and How PrivacyWeave Enables It
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Simran Gupta</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">Legal Consultant at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 8 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        The "never trust, always verify" model and how PrivacyWeave implements it in practice.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingZeroTrust}
+                                    >
+                                        {isLoadingZeroTrust ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Eighth Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleMaskingBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                Real-Time Data Masking: Protecting Sensitive Data in Dynamic Workflows
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Simran Gupta</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">Legal Consultant at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 8 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        How dynamic masking delivers useful data safely for testing, analytics, and operations.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingMasking}
+                                    >
+                                        {isLoadingMasking ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Ninth Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handleComplianceBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                Compliance by Design Explained: Strategies, Checkpoints, and AI Tools
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Simran Gupta</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">Legal Consultant at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 8 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Build privacy in from day one using practical strategies, checkpoints, and AI tooling.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingCompliance}
+                                    >
+                                        {isLoadingCompliance ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                                Loading...
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <FileText size={18} />
+                                                Read Full Blog
+                                            </div>
+                                        )}
+                                    </Button>
+                                    <div className="flex items-center gap-2 text-blue-600 text-sm">
+                                        <ExternalLink size={14} />
+                                        <span>Opens in new tab</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    {/* Tenth Blog Banner */}
+                    <Card
+                        className="cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg bg-white"
+                        onClick={handlePrivacyByDesignBlogClick}
+                    >
+                        <CardHeader className="bg-gradient-to-r from-[#0a2c5a] to-[#1e40af] py-20 text-white">
+                            <div className="flex items-center gap-2 mb-2">
+                                <FileText size={20} />
+                                <span className="text-white text-sm font-medium">NEW BLOG</span>
+                            </div>
+                            <CardTitle className="text-2xl md:text-3xl leading-tight text-white">
+                                Privacy by Design: Protecting Identities in Tomorrow's Intelligent Systems
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <User size={16} />
+                                        <span className="font-medium">Balaganesh S</span>
+                                        <span className="text-gray-500">•</span>
+                                        <span className="text-gray-500">AI/ML Engineering Intern at PrivacyWeave</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-gray-600">
+                                        <Calendar size={16} />
+                                        <span>Published on 11 September 2025</span>
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        Explore how Privacy by Design principles protect identities in intelligent systems, ensuring trust and compliance in tomorrow's AI-driven world.
+                                    </p>
+                                </div>
+                                <div className="flex flex-col items-center gap-3">
+                                    <Button
+                                        size="lg"
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                                        disabled={isLoadingPrivacyByDesign}
+                                    >
+                                        {isLoadingPrivacyByDesign ? (
                                             <div className="flex items-center gap-2">
                                                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                                                 Loading...

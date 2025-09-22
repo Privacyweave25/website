@@ -1,27 +1,21 @@
 import HeroSection from "@/components/sections/hero-section";
-
-import ContactSection from "@/components/sections/contact-section";
-import CareerSection from "@/components/sections/career-section";
-import CTASection from "@/components/sections/cta-section";
-import FlowchartSection from "@/components/sections/flowchart-section";
+import FeaturesSection from "@/components/sections/features-section";
 import VideoSection from "@/components/sections/video-section";
+import ProductsSection from "@/components/sections/products-section";
+import ComparisonSection from "@/components/sections/comparison-section";
 import StatsSection from "@/components/sections/stats-section";
-
-import EmbeddedFeatureSection from "@/components/sections/embedded-feature-section";
-import AttackSimulationSection from "@/components/sections/attack-simulation-section";
+import StopBreachesSection from "@/components/sections/stop-breaches-section";
 
 const HomePage = () => {
   return (
     <>
       <HeroSection />
-      <FlowchartSection />
       <VideoSection />
+      <FeaturesSection />
+      <ProductsSection />
+      <ComparisonSection />
       <StatsSection />
-      <EmbeddedFeatureSection />
-      <AttackSimulationSection />
-      <ContactSection />
-      <CareerSection />
-      <CTASection />
+      <StopBreachesSection />
     </>
   );
 };

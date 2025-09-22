@@ -1,128 +1,130 @@
 import {
-  Shield,
-  Lock,
-  Bot,
-  ClipboardCheck,
-  BarChart,
-  Users,
-  Database,
-  FileSearch,
-  FileSpreadsheet,
-  ShieldAlert
+  DollarSign,
+  RefreshCw,
+  AlertCircle,
+  Cross,
+  Share2,
+  Heart,
+  Building,
+  CheckCircle,
+  Network
 } from "lucide-react";
 
-const features = [
+const industryFeatures = [
   {
-    icon: <Shield className="text-[#578FCA] text-xl" />,
-    title: "Privacy Automation",
-    description: "Streamline compliance workflows with AI-powered automation to reduce manual tasks and minimize human error.",
-    link: "#",
-    color: "blue",
-    delay: 0
+    category: "FINANCE",
+    features: [
+      {
+        icon: <DollarSign className="text-white text-xl" />,
+        title: "GDPR compliance & automated audit",
+        description: "Simplify global compliance with real-time reports."
+      },
+      {
+        icon: <RefreshCw className="text-white text-xl" />,
+        title: "Adaptive tokenisation for transactions",
+        description: "Protect financial data with dynamic, context-aware masking."
+      },
+      {
+        icon: <AlertCircle className="text-white text-xl" />,
+        title: "Advanced fraud and risk assessment",
+        description: "Detect risks faster with AI-powered privacy insights."
+      }
+    ]
   },
   {
-    icon: <Database className="text-[#2A5485] text-xl" />,
-    title: "Data Classification",
-    description: "Automatically identify and categorize sensitive data across your organization to ensure appropriate protection levels.",
-    link: "#",
-    color: "dark-blue",
-    delay: 0.1
+    category: "HEALTHCARE",
+    features: [
+      {
+        icon: <Cross className="text-white text-xl" />,
+        title: "HIPAA & ISO readiness",
+        description: "Stay audit-ready with automated compliance checks."
+      },
+      {
+        icon: <Share2 className="text-white text-xl" />,
+        title: "Secure data sharing",
+        description: "Exchange sensitive records without revealing patient data."
+      },
+      {
+        icon: <Heart className="text-white text-xl" />,
+        title: "Federated learning for medical research",
+        description: "Exchange sensitive records without revealing patient data."
+      }
+    ]
   },
   {
-    icon: <FileSearch className="text-[#578FCA] text-xl" />,
-    title: "Data Mapping",
-    description: "Create comprehensive data flow diagrams to understand where your sensitive data resides and how it moves through your systems.",
-    link: "#",
-    color: "blue",
-    delay: 0.2
-  },
-  {
-    icon: <ClipboardCheck className="text-[#2A5485] text-xl" />,
-    title: "Consent Management",
-    description: "Maintain compliance with DPDP Act 2023 and other privacy regulations with robust consent tracking and management.",
-    link: "#",
-    color: "dark-blue",
-    delay: 0.3
-  },
-  {
-    icon: <Shield className="text-[#578FCA] text-xl" />,
-    title: "Anomaly Detection",
-    description: "Use AI-powered algorithms to identify unusual data access patterns and potential privacy risks in real-time.",
-    link: "#",
-    color: "blue",
-    delay: 0.4
-  },
-  {
-    icon: <ShieldAlert className="text-[#2A5485] text-xl" />,
-    title: "Breach Detection",
-    description: "Quickly identify and respond to potential data breaches with advanced monitoring and alert systems.",
-    link: "#",
-    color: "dark-blue",
-    delay: 0.5
-  },
-  {
-    icon: <BarChart className="text-[#578FCA] text-xl" />,
-    title: "Data and AI Governance",
-    description: "Implement robust governance frameworks that ensure responsible AI use, ethical data practices, and continuous monitoring of data flows across your organization.",
-    link: "#",
-    color: "blue",
-    delay: 0.6
-  },
-  {
-    icon: <Users className="text-[#2A5485] text-xl" />,
-    title: "Third-Party Management",
-    description: "AI-powered solution for risk assessment of vendors, ensuring they adhere to privacy standards with automated monitoring and compliance verification.",
-    link: "#",
-    color: "dark-blue",
-    delay: 0.7
-  },
-  {
-    icon: <FileSpreadsheet className="text-[#578FCA] text-xl" />,
-    title: "Breach Management & Reporting",
-    description: "Comprehensive incident response system with automated reporting tools for regulatory compliance and stakeholder communication during privacy breaches.",
-    link: "#",
-    color: "blue",
-    delay: 0.8
+    category: "ENTERPRISES",
+    features: [
+      {
+        icon: <Building className="text-white text-xl" />,
+        title: "Polymorphic encryption for data",
+        description: "Keep data secure even if breaches occur."
+      },
+      {
+        icon: <CheckCircle className="text-white text-xl" />,
+        title: "Secure access control across teams",
+        description: "Ensure the right people access the right data."
+      },
+      {
+        icon: <Network className="text-white text-xl" />,
+        title: "Multi-party computation",
+        description: "Analyse and share insights without exposing raw data."
+      }
+    ]
   }
 ];
 
-const FeatureCard = ({ feature }: { feature: typeof features[0] }) => {
+const FeatureCard = ({ feature }: { feature: any }) => {
   return (
-    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-      <div className={`w-12 h-12 rounded-md bg-${feature.color === 'blue' ? '[#578FCA]' : '[#2A5485]'}/10 flex items-center justify-center mb-4`}>
-        {feature.icon}
+    <div className="relative rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02]">
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-white/5" />
+      <div className="absolute inset-0 rounded-2xl border border-white/15" />
+      <div className="relative">
+        <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
+          {feature.icon}
+        </div>
+        <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
+        <p className="text-sm text-gray-300">
+          {feature.description}
+        </p>
       </div>
-      <h3 className="text-lg font-bold text-deep-blue mb-2">{feature.title}</h3>
-      <p className="text-sm text-dark-gray mb-4">
-        {feature.description}
-      </p>
-      <a 
-        href={feature.link} 
-        className="text-[#578FCA] text-sm font-medium hover:text-[#2A5485] transition-colors flex items-center"
-      >
-        Learn more
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </a>
     </div>
   );
 };
 
 const FeaturesSection = () => {
   return (
-    <section className="py-16 bg-[#FDFAF6]">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-deep-blue mb-4">Privacy Solutions Platform</h2>
-          <p className="text-base text-dark-gray max-w-2xl mx-auto">
-            PrivacyWeave's comprehensive platform helps organizations automate privacy compliance and enhance data security with AI-driven tools.
+    <section className="py-20 bg-gradient-to-b from-[#070752] to-black relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-blue-500/5 blur-3xl"></div>
+        <div className="absolute bottom-10 left-[5%] w-96 h-96 rounded-full bg-purple-500/5 blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 via-blue-400/10 to-blue-500/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-6 border border-blue-400">
+            FEATURES
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Built for Every Privacy Challenge
+          </h2>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto">
+            Privacy Weave is a security shield that sits between your AI and users blocking data leaks, preventing jailbreaks, and ensuring compliance in real-time.
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {industryFeatures.map((industry, index) => (
+            <div key={index} className="space-y-6">
+              <h3 className="text-2xl font-bold text-white text-center lg:text-left">
+                {industry.category}
+              </h3>
+              <div className="space-y-4">
+                {industry.features.map((feature, featureIndex) => (
+                  <FeatureCard key={featureIndex} feature={feature} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

@@ -277,7 +277,7 @@ const AboutPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to secure your data with PrivacyWeave?</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">Ready to secure your data with PrivacyWeave?</h2>
             <p className="text-base mb-6 opacity-90 max-w-2xl mx-auto">
               Get in touch with our team to learn how we can help your organization automate privacy compliance and protect sensitive data.
             </p>
@@ -288,7 +288,7 @@ const AboutPage = () => {
                 </Button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white">
+                <Button size="lg" className="bg-blue hover:bg-blue/90 text-white font-medium">
                   Contact Us
                 </Button>
               </Link>

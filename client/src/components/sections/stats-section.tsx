@@ -49,59 +49,114 @@ const GlassBox = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
+// Animate numeric stats when they become active (driven by activeIdx)
+const useAnimatedStats = (targets: number[]) => {
+    const [values, setValues] = useState<number[]>(targets.map(() => 0));
+    const started = useRef<boolean[]>(targets.map(() => false));
+
+    const start = (idx: number, durationMs = 1200) => {
+        if (started.current[idx]) return;
+        started.current[idx] = true;
+        const target = targets[idx];
+        const t0 = performance.now();
+        const tick = (now: number) => {
+            const p = Math.min(1, (now - t0) / durationMs);
+            const next = Math.floor(p * target);
+            setValues((prev) => prev.map((v, i) => (i === idx ? next : v)));
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+
+    return { values, start } as const;
+};
+
 const StatsSection = () => {
-    const avgCost = useCounter(48, 1400); // render $4.8M as 4.8 -> 48/10
-    const leaks = useCounter(412, 1400);
-    const controls = useCounter(97, 1400);
+    const { values, start } = useAnimatedStats([48, 412, 97]); // 48 -> 4.8M
+    const leftRefs = [useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null)];
+    const [activeIdx, setActiveIdx] = useState(0);
+
+    useEffect(() => {
+        const observers: IntersectionObserver[] = [];
+        leftRefs.forEach((ref, idx) => {
+            const node = ref.current;
+            if (!node) return;
+            const obs = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            setActiveIdx(idx);
+                        }
+                    });
+                },
+                { threshold: 0.6 }
+            );
+            obs.observe(node);
+            observers.push(obs);
+        });
+        return () => observers.forEach((o) => o.disconnect());
+    }, []);
+
+    useEffect(() => {
+        start(activeIdx);
+    }, [activeIdx]);
 
     return (
         <section className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-[#0a2c5a]"></div>
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                    @keyframes slide-up-fade {
+                        0% { opacity: 0; transform: translateY(24px); }
+                        100% { opacity: 1; transform: translateY(0); }
+                    }
+                    .stat-animate {
+                        animation: slide-up-fade 0.9s ease forwards;
+                    }
+                `
+            }} />
+            <div className="absolute inset-0 bg-gradient-to-b from-black to-[#070752]"></div>
             <div className="absolute inset-0 bg-[url('/assets/images/noise.png')] opacity-10 pointer-events-none"></div>
 
             <div className="container mx-auto px-4 py-16 md:py-24 relative">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center gap-8 md:gap-12">
-                    {/* Left callout → points to $4.8M */}
-                    <div className="hidden lg:block self-start relative">
-                        <GlassBox>
-                            <p className="text-lg leading-relaxed text-white">The average total cost of a data breach has reached a record high, encompassing direct incident response costs, regulatory fines, business disruption, and long-term reputational damage.</p>
-                        </GlassBox>
-                        <div className="absolute right-[-3rem] top-10 h-px w-12 bg-white/40"></div>
+                {/* Row 1: COST */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
+                    <div ref={leftRefs[0]} className="max-w-2xl">
+                        <div className="text-sm text-gray-400 mb-3 tracking-wider">COST</div>
+                        <h3 className="text-4xl md:text-5xl font-bold text-white mb-5">Average Cost of a Breach</h3>
+                        <p className="text-lg leading-relaxed text-white">The total cost of a data breach has reached a record high, covering response costs, regulatory fines, disruption, and reputational damage.</p>
                     </div>
-
-                    {/* Center numbers */}
-                    <div className="flex flex-col items-center gap-12">
-                        <div ref={avgCost.ref} className="flex items-center gap-6">
-                            <StatNumber label="">
-                                ${((avgCost.value || 0) / 10).toFixed(1)}M
-                            </StatNumber>
+                    <div className="flex justify-center">
+                        <div className={`rounded-2xl border border-white/15 bg-gradient-to-b from-slate-900/60 to-slate-800/40 backdrop-blur-md shadow-2xl p-12 text-center transition-all duration-500 ${activeIdx === 0 ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-6'}`}>
+                            <div className="text-6xl md:text-7xl font-bold text-white">${((values[0] || 0) / 10).toFixed(1)}M</div>
                         </div>
-
-                        <div ref={leaks.ref}>
-                            <StatNumber label="">{leaks.value}%</StatNumber>
-                        </div>
-
-                        <div ref={controls.ref}>
-                            <StatNumber label="">{controls.value}%</StatNumber>
-                        </div>
-                    </div>
-
-                    {/* Right callout → points to 412% */}
-                    <div className="hidden lg:block self-end relative -mt-10">
-                        <GlassBox>
-                            <p className="text-lg leading-relaxed text-white">Organizations have experienced a dramatic surge in AI-related security incidents, including model poisoning, prompt injection attacks, and adversarial machine learning exploits.</p>
-                        </GlassBox>
-                        <div className="absolute left-[-3rem] -top-6 h-px w-12 bg-white/40"></div>
                     </div>
                 </div>
 
-                {/* Bottom callout → points to 97% */}
-                <div className="hidden lg:block relative mt-10">
-                    <div className="absolute left-1/2 -translate-x-1/2 top-0 h-px w-[18rem] bg-white/30"></div>
-                    <div className="max-w-4xl mx-auto mt-4">
-                        <GlassBox>
-                            <p className="text-lg leading-relaxed text-center text-white">An overwhelming majority of breached organizations admitted they had insufficient AI access controls and governance frameworks in place at the time of the incident.</p>
-                        </GlassBox>
+                {/* Row 2: SURGE */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
+                    <div className="flex justify-center">
+                        <div className={`rounded-2xl border border-white/15 bg-gradient-to-b from-slate-900/60 to-slate-800/40 backdrop-blur-md shadow-2xl p-12 text-center transition-all duration-500 ${activeIdx === 1 ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-6'}`}>
+                            <div className="text-6xl md:text-7xl font-bold text-white">{values[1] || 0}%</div>
+                        </div>
+                    </div>
+                    <div ref={leftRefs[1]} className="max-w-2xl">
+                        <div className="text-sm text-gray-400 mb-3 tracking-wider">SURGE</div>
+                        <h3 className="text-4xl md:text-5xl font-bold text-white mb-5">Surge in AI-Related Incidents</h3>
+                        <p className="text-lg leading-relaxed text-white">Organizations face rising threats from model poisoning, prompt injection, and adversarial machine learning exploits.</p>
+                    </div>
+                </div>
+
+                {/* Row 3: GOVERNANCE */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[50vh]">
+                    <div ref={leftRefs[2]} className="max-w-2xl">
+                        <div className="text-sm text-gray-400 mb-3 tracking-wider">GOVERNANCE</div>
+                        <h3 className="text-4xl md:text-5xl font-bold text-white mb-5">Lack Proper AI Governance</h3>
+                        <p className="text-lg leading-relaxed text-white">Most breached organizations admitted they lacked sufficient AI access controls and governance frameworks at the time of the incident.</p>
+                    </div>
+                    <div className="flex justify-center">
+                        <div className={`rounded-2xl border border-white/15 bg-gradient-to-b from-slate-900/60 to-slate-800/40 backdrop-blur-md shadow-2xl p-12 text-center transition-all duration-500 ${activeIdx === 2 ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-6'}`}>
+                            <div className="text-6xl md:text-7xl font-bold text-white">{values[2] || 0}%</div>
+                        </div>
                     </div>
                 </div>
             </div>

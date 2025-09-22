@@ -1,106 +1,192 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle } from "lucide-react";
+import { Shield, ChevronDown, Menu } from "lucide-react";
+import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const HeroSection = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <section className="bg-[#F6F4F0] py-20 md:py-28 lg:py-32 relative overflow-hidden">
+    <section className="bg-gradient-to-b from-black to-[#070752] relative overflow-hidden min-h-screen">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
-        <div className="absolute bottom-10 left-[5%] w-96 h-96 rounded-full bg-secondary/5 blur-3xl"></div>
-        <div className="absolute top-1/3 left-1/4 w-20 h-20 rounded-full border border-primary/10"></div>
-        <div className="absolute bottom-1/4 right-1/3 w-32 h-32 rounded-full border border-secondary/10"></div>
+        <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute bottom-10 left-[5%] w-96 h-96 rounded-full bg-purple-500/10 blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/4 w-20 h-20 rounded-full border border-blue-400/20"></div>
+        <div className="absolute bottom-1/4 right-1/3 w-32 h-32 rounded-full border border-purple-400/20"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 gap-10 items-start">
+      {/* Integrated Header */}
+      <header className="absolute top-0 left-0 right-0 z-50 py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <span className="text-2xl font-bold">
+                <span className="text-blue-400">Privacy</span>
+                <span className="text-white"> Weave</span>
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-white hover:text-white/90 font-medium flex items-center gap-1">
+                    Products
+                    <ChevronDown size={16} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-72 p-1 bg-slate-800 border border-white/10 shadow-md rounded-md overflow-hidden">
+                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
+                    <Link href="/products/ai-scanner">AI Security Scanner</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
+                    <Link href="/products/protection-shield">Real‑Time Protection Shield</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
+                    <Link href="/products/supply-chain">AI to AI Supply Chain</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              <Link href="/use-cases">
+                <Button variant="ghost" className="text-white hover:text-white/90 font-medium">
+                  Use Cases
+                </Button>
+              </Link>
+
+              <Link href="/about">
+                <Button variant="ghost" className="text-white hover:text-white/90 font-medium">
+                  About Us
+                </Button>
+              </Link>
+
+              {/* Resources Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="text-white hover:text-white/90 font-medium flex items-center gap-1">
+                    Resources
+                    <ChevronDown size={16} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64 p-1 bg-slate-800 border border-white/10 shadow-md rounded-md overflow-hidden">
+                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
+                    <Link href="/blog">Blog</Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </nav>
+
+            {/* CTA Button */}
+            <div className="hidden lg:flex items-center">
+              <Link href="/contact">
+                <Button
+                  variant="outline"
+                  className="bg-white text-slate-900 hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                >
+                  Try for Free →
+                </Button>
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-white"
+              >
+                <Menu size={24} />
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <div className="lg:hidden mt-4 bg-slate-800/90 backdrop-blur-sm rounded-lg p-4 border border-white/10">
+              <div className="space-y-2">
+                <Link href="/products" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full text-white justify-start">Products</Button>
+                </Link>
+                <Link href="/use-cases" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full text-white justify-start">Use Cases</Button>
+                </Link>
+                <Link href="/about" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full text-white justify-start">About Us</Button>
+                </Link>
+                {/* Resources item for mobile */}
+                <Link href="/blog" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full text-white justify-start">Resources · Blog</Button>
+                </Link>
+                <div className="pt-2">
+                  <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                    <Button
+                      variant="outline"
+                      className="bg-white text-white hover:bg-gray-100 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-lg"
+                    >
+                      Try for Free
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Content */}
+      <div className="container mx-auto px-4 pt-32 pb-20 relative z-10">
+        <div className="text-center max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="max-w-xl"
+            className="mb-8"
           >
-            <div className="inline-flex items-center px-4 py-2 bg-primary/5 text-primary rounded-full text-sm font-medium mb-6 gap-2">
-              <div className="size-5 bg-primary text-white rounded-full flex items-center justify-center">
-                <Shield className="size-3" />
-              </div>
+            <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-blue-400 rounded-full text-sm font-medium mb-8 gap-2 border border-white/20">
+
               <span>Smart Privacy. Smarter Business.</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0a2c5a] leading-tight mb-6 lg:whitespace-nowrap">
-              AI is one prompt away from leaking your secrets.
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+              Every AI system is one prompt {" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-400">
+                away from catastrophic leak
+              </span>
             </h1>
 
-            <p className="text-lg text-[#0a2c5a] mb-8 max-w-lg font-light leading-relaxed">
-              PrivacyWeave delivers end-to-end data privacy solutions with advanced encryption standards and AI-driven automation to protect your most valuable assets.
+            <p className="text-xl text-gray-300 mb-12 max-w-4xl mx-auto font-light leading-relaxed">
+              Privacy Weave is the intelligent privacy infrastructure that keeps your AI secure, compliant, and trustworthy.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <Link href="/contact">
-                <Button size="lg" className="bg-[#0a2c5a] hover:bg-[#0a2c5a]/90 text-white px-8 rounded-md font-medium">
-                  Request a Demo
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 py-4 border-2 border-white bg-white/25 text-white backdrop-blur-sm rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white/35 shadow-[0_0_22px_rgba(196,181,253,0.55)] hover:shadow-[0_0_34px_rgba(196,181,253,0.75)]"
+                >
+                  Try for Free
                 </Button>
               </Link>
-              <Link href="#">
-                <Button size="lg" variant="outline" className="px-8 border-2 border-[#0a2c5a] text-[#0a2c5a] hover:bg-[#0a2c5a]/10 hover:text-[#0a2c5a] rounded-md font-medium transition-all">
-                  View Solutions
+              <Link href="/use-cases">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 py-4 border-2 border-white bg-white/20 text-white backdrop-blur-sm rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white/30"
+                >
+                  Use Cases
                 </Button>
               </Link>
-            </div>
-
-            <div className="space-y-3"></div>
-          </motion.div>
-
-          {/* Solar system below hero copy, full width and centered */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="w-full flex justify-center"
-          >
-            <div className="relative mx-auto h-[44rem] w-[44rem] md:h-[52rem] md:w-[52rem]">
-              {/* Orbits (now 5, with Claude on outermost) */}
-              <div className="orbit-ring orbit-1"></div>
-              <div className="orbit-ring orbit-2"></div>
-              <div className="orbit-ring orbit-3"></div>
-              <div className="orbit-ring orbit-4"></div>
-              <div className="orbit-ring orbit-5"></div>
-
-              {/* Sun (PrivacyWeave) */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="sun-glow size-40 md:size-56 rounded-full grid place-items-center">
-                  <img
-                    src="/assets/logos/privacyweave.png"
-                    alt="PrivacyWeave"
-                    className="size-24 md:size-32 object-contain rounded-full bg-white p-2"
-                  />
-                </div>
-              </div>
-
-              {/* Planets: one per orbit, no overlaps */}
-              <div className="orbit-spin orbit-size-2 orbit-speed-slow" style={{ animationDelay: "-5s" }}>
-                <div className="planet-at-edge">
-                  <img src="/assets/logos/salesforce.png" alt="Salesforce" className="planet-img counter-slow" />
-                </div>
-              </div>
-              <div className="orbit-spin orbit-size-3 orbit-speed-slower" style={{ animationDelay: "-8s" }}>
-                <div className="planet-at-edge">
-                  <img src="/assets/logos/postgresql.png" alt="PostgreSQL" className="planet-img counter-slower" />
-                </div>
-              </div>
-              <div className="orbit-spin orbit-size-4 orbit-speed-slowest" style={{ animationDelay: "-11s" }}>
-                <div className="planet-at-edge">
-                  <img src="/assets/logos/openai.png" alt="OpenAI" className="planet-img counter-slowest" />
-                </div>
-              </div>
-              {/* Claude moved to outermost orbit */}
-              <div className="orbit-spin orbit-size-5 orbit-speed-medium" style={{ animationDelay: "-2s" }}>
-                <div className="planet-at-edge">
-                  <img src="/assets/logos/claude.png" alt="Claude" className="planet-img counter-medium" />
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
