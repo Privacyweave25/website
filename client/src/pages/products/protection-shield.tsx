@@ -92,6 +92,7 @@ const ProtectionShieldPage = () => {
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
           }
           
           .feature-card:hover {
@@ -195,7 +196,9 @@ const ProtectionShieldPage = () => {
         `
       }} />
 
-      <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="min-h-screen text-white relative">
+        {/* Fixed gradient background */}
+        <div className="fixed inset-0 bg-gradient-to-b from-black to-[#070752] -z-10"></div>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center relative px-4 py-20">
           <div className="hero-bg"></div>
@@ -230,7 +233,7 @@ const ProtectionShieldPage = () => {
               .shield-icon{font-size:3rem;color:#00ff7f;animation:ps-glow 2s ease-in-out infinite alternate}
               @keyframes ps-glow{from{text-shadow:0 0 20px #00ff7f,0 0 30px #00ff7f}to{text-shadow:0 0 30px #00ff7f,0 0 40px #00ff7f,0 0 50px #00ff7f}}
               .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin:40px 0}
-              .layer{background:rgba(255,255,255,.05);border:2px solid transparent;border-radius:20px;padding:25px;backdrop-filter:blur(15px);transition:all .4s ease;position:relative;overflow:hidden;cursor:pointer}
+              .layer{background:rgba(255,255,255,.05);border:2px solid transparent;border-radius:20px;padding:25px;backdrop-filter:blur(15px);transition:all .4s ease;position:relative;overflow:hidden;cursor:pointer;box-shadow:0 0 20px rgba(255,255,255,.1)}
               .layer:before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,127,.1),transparent);transition:left .6s ease}
               .layer:hover:before{left:100%}
               .layer:hover{transform:translateY(-10px) scale(1.02);border-color:#00ff7f;box-shadow:0 15px 40px rgba(0,255,127,.2)}
@@ -242,7 +245,7 @@ const ProtectionShieldPage = () => {
               .active{background:#00ff7f}.blocked{background:#ff1493}.warn{background:#ffd700}
               @keyframes ps-blink{0%,50%{opacity:1}51%,100%{opacity:.3}}
               .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin:30px 0}
-              .stat{background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:2px solid rgba(0,255,127,.3);border-radius:15px;padding:25px;text-align:center;backdrop-filter:blur(15px);position:relative;overflow:hidden}
+              .stat{background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:2px solid rgba(0,255,127,.3);border-radius:15px;padding:25px;text-align:center;backdrop-filter:blur(15px);position:relative;overflow:hidden;box-shadow:0 0 20px rgba(255,255,255,.1)}
               .stat:after{content:'';position:absolute;bottom:0;left:0;height:4px;background:linear-gradient(90deg,#00ff7f,#00bfff,#ff1493);animation:ps-bar 3s ease-in-out infinite}
               @keyframes ps-bar{0%{width:0%}50%{width:100%}100%{width:0%}}
             `}} />
@@ -268,7 +271,7 @@ const ProtectionShieldPage = () => {
               </div>
 
               <div className="threat">
-                <h2 className="text-2xl mb-3">🚨 Live Threat Monitor</h2>
+                <h2 className="text-2xl mb-3 text-white">🚨 Live Threat Monitor</h2>
                 <div className="tgrid">
                   <div className="titem tblocked"><div className="dot blocked"></div><strong>SQL Injection</strong><div className="threat-count">Blocked: 247 attempts</div></div>
                   <div className="titem tblocked"><div className="dot blocked"></div><strong>Prompt Injection</strong><div className="threat-count">Blocked: 89 attempts</div></div>
@@ -280,10 +283,10 @@ const ProtectionShieldPage = () => {
               </div>
 
               <div className="stats">
-                <div className="stat"><h3>🛡️ Threats Blocked</h3><div className="text-3xl font-bold text-[#00ff7f]">1,247</div><p>In the last 24 hours</p></div>
-                <div className="stat"><h3>⚡ Response Time</h3><div className="text-3xl font-bold text-[#00ff7f]">0.003s</div><p>Average detection speed</p></div>
-                <div className="stat"><h3>🔒 Data Protected</h3><div className="text-3xl font-bold text-[#00ff7f]">99.99%</div><p>Zero data leaks</p></div>
-                <div className="stat"><h3>🎯 Accuracy Rate</h3><div className="text-3xl font-bold text-[#00ff7f]">99.87%</div><p>ML model precision</p></div>
+                <div className="stat"><h3 className="text-white">🛡️ Threats Blocked</h3><div className="text-3xl font-bold text-[#00ff7f]">1,247</div><p>In the last 24 hours</p></div>
+                <div className="stat"><h3 className="text-white">⚡ Response Time</h3><div className="text-3xl font-bold text-[#00ff7f]">0.003s</div><p>Average detection speed</p></div>
+                <div className="stat"><h3 className="text-white">🔒 Data Protected</h3><div className="text-3xl font-bold text-[#00ff7f]">99.99%</div><p>Zero data leaks</p></div>
+                <div className="stat"><h3 className="text-white">🎯 Accuracy Rate</h3><div className="text-3xl font-bold text-[#00ff7f]">99.87%</div><p>ML model precision</p></div>
               </div>
             </div>
           </div>
@@ -291,7 +294,7 @@ const ProtectionShieldPage = () => {
 
         {/* Protection in Real-Time */}
         <div className="max-w-6xl mx-auto px-4 py-16">
-          <h2 className="text-4xl font-bold text-center mb-4">Protection in Real-Time</h2>
+          <h2 className="text-4xl font-bold text-center mb-4 text-white">Protection in Real-Time</h2>
           <p className="text-center text-gray-400 mb-12">Under 50ms response time. Your users won't even notice.</p>
 
           <div className="demo-flow">
