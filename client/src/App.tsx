@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -75,6 +75,13 @@ function Router() {
 }
 
 function App() {
+  const [location] = useLocation();
+  const hideFooter = [
+    "/products/ai-scanner",
+    "/products/protection-shield",
+    "/products/supply-chain",
+    "/use-cases",
+  ].some((path) => location.startsWith(path));
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -82,7 +89,7 @@ function App() {
           <main className="flex-grow relative z-10">
             <Router />
           </main>
-          <Footer />
+          {!hideFooter && <Footer />}
           <ChatInterface />
           <CookieBanner />
         </div>

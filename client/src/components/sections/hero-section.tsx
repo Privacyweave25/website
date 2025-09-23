@@ -39,32 +39,41 @@ const HeroSection = () => {
             <nav className="hidden lg:flex items-center space-x-8">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-white hover:text-white/90 font-medium flex items-center gap-1">
+                  <Button variant="ghost" className="text-white hover:text-white/90 hover:bg-blue-600/30 font-medium flex items-center gap-1 rounded-md">
                     Products
                     <ChevronDown size={16} />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-72 p-1 bg-slate-800 border border-white/10 shadow-md rounded-md overflow-hidden">
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
-                    <Link href="/products/ai-scanner">AI Security Scanner</Link>
+                <DropdownMenuContent align="start" className="w-[360px] p-1 bg-slate-800 border border-white/10 shadow-md rounded-md overflow-hidden">
+                  <DropdownMenuItem asChild className="rounded-md p-3 hover:bg-blue-600/30 data-[highlighted]:bg-blue-600/30 data-[highlighted]:text-white text-white cursor-pointer items-start flex-col gap-0 text-left">
+                    <Link href="/products/ai-scanner" className="block w-full">
+                      <div className="text-sm font-semibold leading-tight">AI Security Scanner</div>
+                      <div className="text-xs text-white/70 mt-1 leading-snug whitespace-normal">Detect and block prompt injection, data exfiltration, and social engineering all in real-time</div>
+                    </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
-                    <Link href="/products/protection-shield">Real‑Time Protection Shield</Link>
+                  <DropdownMenuItem asChild className="rounded-md p-3 hover:bg-blue-600/30 data-[highlighted]:bg-blue-600/30 data-[highlighted]:text-white text-white cursor-pointer items-start flex-col gap-0 text-left">
+                    <Link href="/products/protection-shield" className="block w-full">
+                      <div className="text-sm font-semibold leading-tight">Real‑Time Protection Shield</div>
+                      <div className="text-xs text-white/70 mt-1 leading-snug whitespace-normal">Your AI guard that never sleeps, never leaks</div>
+                    </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="rounded-md p-2 hover:bg-slate-700 text-white cursor-pointer">
-                    <Link href="/products/supply-chain">AI to AI Supply Chain</Link>
+                  <DropdownMenuItem asChild className="rounded-md p-3 hover:bg-blue-600/30 data-[highlighted]:bg-blue-600/30 data-[highlighted]:text-white text-white cursor-pointer items-start flex-col gap-0 text-left">
+                    <Link href="/products/supply-chain" className="block w-full">
+                      <div className="text-sm font-semibold leading-tight">AI to AI Supply Chain</div>
+                      <div className="text-xs text-white/70 mt-1 leading-snug whitespace-normal">Know every API, plugin, and service touching your data.</div>
+                    </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
               <Link href="/use-cases">
-                <Button variant="ghost" className="text-white hover:text-white/90 font-medium">
+                <Button variant="ghost" className="text-white hover:text-white/90 hover:bg-blue-600/30 font-medium rounded-md">
                   Use Cases
                 </Button>
               </Link>
 
               <Link href="/about">
-                <Button variant="ghost" className="text-white hover:text-white/90 font-medium">
+                <Button variant="ghost" className="text-white hover:text-white/90 hover:bg-blue-600/30 font-medium rounded-md">
                   About Us
                 </Button>
               </Link>
@@ -72,7 +81,7 @@ const HeroSection = () => {
               {/* Resources Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="text-white hover:text-white/90 font-medium flex items-center gap-1">
+                  <Button variant="ghost" className="text-white hover:text-white/90 hover:bg-blue-600/30 font-medium flex items-center gap-1 rounded-md">
                     Resources
                     <ChevronDown size={16} />
                   </Button>
@@ -144,7 +153,7 @@ const HeroSection = () => {
       </header>
 
       {/* Hero Content */}
-      <div className="container mx-auto px-4 pt-32 pb-20 relative z-10">
+      <div className="container mx-auto px-4 pt-32 pb-10 relative z-10">
         <div className="text-center max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

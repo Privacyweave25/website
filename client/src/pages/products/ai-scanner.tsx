@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "wouter";
+import Footer from "@/components/layout/footer";
 
 const AIScannerPage = () => {
   const [, setLocation] = useLocation();
@@ -251,11 +252,11 @@ const AIScannerPage = () => {
         `
       }} />
 
-      <div className="min-h-screen text-white relative">
+      <div className="min-h-screen text-white relative flex flex-col">
         {/* Fixed gradient background */}
         <div className="fixed inset-0 bg-gradient-to-b from-black to-[#070752] -z-10"></div>
         {/* Hero Section */}
-        <section className="h-screen flex items-center justify-center relative px-4 py-20">
+        <section className="h-screen flex items-center justify-center relative px-4 py-20 flex-1">
           <div className="hero-bg"></div>
           <div className="max-w-4xl text-center relative z-10">
 
@@ -414,7 +415,32 @@ const AIScannerPage = () => {
             </div>
           </div>
         </div>
+        {/* Stop Breaches Banner */}
+        <section className="pt-20 pb-0 bg-gradient-to-b from-[#070752] to-black relative overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="rounded-2xl p-12 border border-white/10 shadow-2xl text-center relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/assets/images/background%20frame.png')" }}>
+              <div className="absolute inset-0 bg-white/70" />
+              <div className="relative z-10">
+                <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                  Stop Breaches Before They Start
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+                    with PrivacyWeave
+                  </span>
+                </h3>
+                <p className="text-xl text-gray-700 mb-8 max-w-4xl mx-auto">
+                  Every company has the same problem: AI is all-or-nothing. Either everyone sees everything (dangerous) or no one sees anything (useless).
+                </p>
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <a href="/contact" className="px-8 py-4 border-2 border-slate-900 text-slate-900 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-slate-900 hover:text-white">Try for Free</a>
+                  <a href="/use-cases" className="px-8 py-4 border-2 border-slate-900 text-slate-900 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-slate-900 hover:text-white">Use Cases</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
+      <Footer />
     </>
   );
 };

@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Brain, Heart, DollarSign, ShoppingCart, Cpu, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import Footer from "@/components/layout/footer";
 
 const UseCasesPage = () => {
     const listRef = useRef<HTMLDivElement | null>(null);
@@ -157,9 +159,9 @@ const UseCasesPage = () => {
     }, [techInView]);
 
     return (
-        <div className="min-h-screen text-white relative pt-20">
+        <div className="min-h-screen text-white relative pt-20 flex flex-col">
             <div className="fixed inset-0 bg-gradient-to-b from-black to-[#070752] -z-10"></div>
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-4 py-16 flex-1">
                 {/* Header Section */}
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
@@ -266,16 +268,16 @@ const UseCasesPage = () => {
                                                         {encSub === 'poly' && (
                                                             <div className="mt-2 w-[300px]">
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">Before</div>
-                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm">Secret123</div>
+                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm text-black">Secret123</div>
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">After</div>
                                                                 <div className="grid grid-cols-1 gap-2">
                                                                     <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
                                                                         <span className="mr-2 text-gray-600">Attempt 1 =</span>
-                                                                        <span className={`${polyShown1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500`}>a8F#k91LmZ</span>
+                                                                        <span className={`${polyShown1 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 text-black`}>a8F#k91LmZ</span>
                                                                     </div>
                                                                     <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
                                                                         <span className="mr-2 text-gray-600">Attempt 2 =</span>
-                                                                        <span className={`${polyShown2 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500`}>Qp7!zTr5Xw</span>
+                                                                        <span className={`${polyShown2 ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 text-black`}>Qp7!zTr5Xw</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -292,10 +294,10 @@ const UseCasesPage = () => {
                                                         {encSub === 'homo' && (
                                                             <div className="mt-2 w-[320px]">
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">Before</div>
-                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm">5 + 7 = 12</div>
+                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm text-black">5 + 7 = 12</div>
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">After</div>
                                                                 <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
-                                                                    <span className={`${homoShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500`}>Uv7ZnPq44M <span className="text-gray-500">→</span> Rt9LmQv82z = 12</span>
+                                                                    <span className={`${homoShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 text-black`}>Uv7ZnPq44M <span className="text-gray-500">→</span> Rt9LmQv82z = 12</span>
                                                                 </div>
                                                             </div>
                                                         )}
@@ -311,16 +313,16 @@ const UseCasesPage = () => {
                                                         {encSub === 'role' && (
                                                             <div className="mt-2 w-[360px]">
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">Before</div>
-                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm">PatientDiagnosis = "Diabetes"</div>
+                                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-2 shadow-sm text-black">PatientDiagnosis = "Diabetes"</div>
                                                                 <div className="text-sm font-semibold text-gray-800 mb-1">After</div>
                                                                 <div className="grid grid-cols-1 gap-2">
                                                                     <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
-                                                                        <span className={`${roleShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500`}>
+                                                                        <span className={`${roleShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 text-black`}>
                                                                             role = <span className="text-green-600 font-semibold">Doctor</span> → Decrypted → <span className="text-green-600 font-semibold">"Diabetes"</span>
                                                                         </span>
                                                                     </div>
                                                                     <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
-                                                                        <span className={`${roleShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 delay-200`}>
+                                                                        <span className={`${roleShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 delay-200 text-black`}>
                                                                             role = <span className="text-red-600 font-semibold">Staff</span> → Decrypted → <span className="text-red-600 font-semibold">"Restricted"</span>
                                                                         </span>
                                                                     </div>
@@ -338,10 +340,10 @@ const UseCasesPage = () => {
                                         <div className={`absolute left-0 bottom-full mb-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-opacity duration-200`}>
                                             <div className="rounded-xl border border-gray-200 bg-white shadow-xl p-4 w-[300px]">
                                                 <div className="text-sm font-semibold text-gray-800 mb-2">Before</div>
-                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-3 shadow-sm">Password123</div>
+                                                <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white mb-3 shadow-sm text-black">Password123</div>
                                                 <div className="text-sm font-semibold text-gray-800 mb-2">After</div>
                                                 <div className="font-mono text-base rounded-lg px-3 py-2 border border-gray-200 bg-white shadow-sm h-[40px] flex items-center">
-                                                    <span className={`${adaptiveAfterShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 ease-out`}>[TKN_4f92a8]</span>
+                                                    <span className={`${adaptiveAfterShown ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-1 scale-95'} transition-all duration-500 ease-out text-black`}>[TKN_4f92a8]</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -383,30 +385,58 @@ const UseCasesPage = () => {
                 {/* Video Section (Use Cases) */}
                 <div className="max-w-6xl mx-auto px-4 py-12">
                     <div className="max-w-5xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black relative ring-4 ring-blue-500/30 ring-opacity-50 shadow-[0_0_50px_rgba(59,130,246,0.3)]">
-                        <video className="w-full h-full" controls playsInline poster="/assets/video/thumbail.png">
+                        <video className="w-full h-full" controls playsInline poster="/assets/video/usecase_thumbnail.png">
                             <source src="/assets/video/Use%20cases%20.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                     </div>
                 </div>
 
-                {/* CTA Section */}
-                <div className="text-center bg-white rounded-2xl p-12 shadow-xl">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                        Ready to Secure Your AI?
-                    </h2>
-                    <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                        Get started with PrivacyWeave's comprehensive AI security solutions tailored for your industry.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/contact">
-                            <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300">
-                                Request Demo
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
             </div>
+
+            {/* Stop Breaches Banner Only */}
+            <section className="py-20 bg-gradient-to-b from-[#070752] to-black relative overflow-hidden">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="container mx-auto px-4"
+                >
+                    <div className="rounded-2xl p-12 border border-white/10 shadow-2xl text-center relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: "url('/assets/images/background%20frame.png')" }}>
+                        {/* Light overlay for readability */}
+                        <div className="absolute inset-0 bg-white/70" />
+
+                        <div className="relative z-10">
+                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+                                Stop Breaches Before They Start
+                                <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+                                    with PrivacyWeave
+                                </span>
+                            </h3>
+
+                            <p className="text-xl text-gray-700 mb-8 max-w-4xl mx-auto">
+                                Every company has the same problem: AI is all-or-nothing. Either everyone sees everything (dangerous) or no one sees anything (useless).
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                                <Link href="/contact">
+                                    <Button size="lg" variant="outline" className="px-8 py-4 border-2 border-slate-900 text-slate-900 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-slate-900 hover:text-white">
+                                        Try for Free
+                                    </Button>
+                                </Link>
+                                <Link href="/use-cases">
+                                    <Button size="lg" variant="outline" className="px-8 py-4 border-2 border-slate-900 text-slate-900 rounded-full font-semibold text-lg transition-all duration-300 hover:bg-slate-900 hover:text-white">
+                                        Use Cases
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            </section>
+            <Footer />
         </div>
     );
 };

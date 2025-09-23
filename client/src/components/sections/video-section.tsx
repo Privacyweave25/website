@@ -17,7 +17,7 @@ const VideoSection = () => {
     };
 
     return (
-        <section className="py-16 md:py-20 bg-gradient-to-b from-[#070752] to-black">
+        <section className="pt-6 md:pt-10 pb-16 md:pb-20 bg-gradient-to-b from-[#070752] to-black">
             <div className="container mx-auto px-4">
                 <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-6">See PrivacyWeave in Action</h2>
                 <div className="max-w-5xl mx-auto aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black relative ring-4 ring-blue-500/30 ring-opacity-50 shadow-[0_0_50px_rgba(59,130,246,0.3)]">
