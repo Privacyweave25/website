@@ -329,9 +329,15 @@ const CookiePolicy = () => {
                                         If you have any questions about our use of cookies, please contact us:
                                     </p>
                                     <div className="text-sm space-y-1">
-                                        <p><strong>Email:</strong> privacy@privacyweave.com</p>
-                                        <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                                        <p><strong>Address:</strong> PrivacyWeave Inc.</p>
+                                        <p>
+                                            <strong>Office Location:</strong> Kesariya Complex, 914/8-14, Avinashi Road, Coimbatore Central, Coimbatore, Coimbatore South, Tamil Nadu, India, 641018
+                                        </p>
+                                        <p>
+                                            <strong>Phone:</strong> <a href="tel:+919087695972" className="text-blue-600 hover:underline">+91-9087695972</a>
+                                        </p>
+                                        <p>
+                                            <strong>Email:</strong> <a href="mailto:teams@privacyweave.in" className="text-blue-600 hover:underline">teams@privacyweave.in</a>
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>
